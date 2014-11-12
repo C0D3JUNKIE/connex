@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block tabtitle %} Social Streams {% endblock %}
+{% block pageheader %} Which Streams are going Social {% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+{% for greeting in greetings %}
+{% if greeting.author %}
+  <b>{{ greeting.author.nickname() }}</b> wrote:
+  {% else %}
+  An anonymous person wrote:
+  {% endif %}
+  <blockquote>{{ greeting.content }}</blockquote>
+  {% endfor %}  
+  
+  <h3>Streams I own</h3>
+
+  <h3>Streams I subscribe to</h3>
+
+  <a href="{{ url|safe }}">{{ url_linktext }}</a>
+{% endblock %}

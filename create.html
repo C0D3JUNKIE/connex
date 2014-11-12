@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block tabtitle %} Create a Stream {% endblock %}
+{% block pageheader %} Stream Creation {% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  
+  <h3>Name your Stream</h3>
+
+  <h3>Add subscribers</h3>
+
+  <h3>Tag your stream</h3>
+
+  <h3>URL to cover image</h3>
+
+  <form method="post">
+    <label for="streamName">Stream Name:</label>
+    <input name="streamSub" type="text" value="{{firstName}}"/><br />
+            
+    <label for="familyName">Family Name:</label>
+    <input name="familyName" type="text" value="{{familyName}}"/><br />
+            
+    <input name="" type="submit" value="Save"/>
+  </form>  
+  <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
+    <div><textarea name="content" rows="3" cols="60"></textarea></div>
+    <div><input type="submit" value="Sign Guestbook"></div>
+  </form>
+
+  <a href="{{ url|safe }}">{{ url_linktext }}</a>
+{% endblock %}
