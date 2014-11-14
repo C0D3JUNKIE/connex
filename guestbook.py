@@ -49,24 +49,14 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
-
         # Ancestor Queries, as shown here, are strongly consistent with the High
         # Replication Datastore. Queries that span entity groups are eventually
         # consistent. If we omitted the ancestor from this query there would be
         # a slight chance that Greeting that had just been written would not
         # show up in a query.
         greetings_query = Greeting.query(
-            ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
+            ancestor = guestbook_key(guestbook_name)).order(-Greeting.date)
         greetings = greetings_query.fetch(10)
-
-         for greeting in greetings:
-            if greeting.author:
-                self.response.write(
-                        '<b>%s</b> wrote:' % greeting.author.nickname())
-            else:
-                self.response.write('An anonymous person wrote:')
-            self.response.write('<blockquote>%s</blockquote>' %
-                                cgi.escape(greeting.content))
 
         if users.get_current_user():
             url = users.create_logout_url(self.request.uri)
@@ -74,12 +64,6 @@ class MainPage(webapp2.RequestHandler):
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
-
-        # Write the submission form and the footer of the page
-        sign_query_params = urllib.urlencode({'guestbook_name': guestbook_name})
-        self.response.write(MAIN_PAGE_FOOTER_TEMPLATE %
-                            (sign_query_params, cgi.escape(guestbook_name),
-                             url, url_linktext))    
 
         template_values = {
             'greetings': greetings,
@@ -92,24 +76,12 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 class Guestbook(webapp2.RequestHandler):
-    def get(self):
-        session = get_current_session()
-        firstName = session.get('firstName', '') 
-        familyName = session.get('familyName', '')
-        message = session.get('message', '')
-        jinja_environment = jinja2.Environment(autoescape = True,
-            loader = jinja2.FileSystemLoader(os.path.join(
-               os.path.dirname(__file__), 'templates')))
-        tpl_vars = { "message": message, "firstName": firstName, 
-            "familyName": familyName }
-        template = jinja_environment.get_template('index.html')
-        self.response.out.write(template.render(tpl_vars))
-    
     def post(self):
         # We set the same parent key on the 'Greeting' to ensure each Greeting
         # is in the same entity group. Queries across the single entity group
         # will be consistent. However, the write rate to a single entity group
         # should be limited to ~1/second.
+        
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
         greeting = Greeting(parent=guestbook_key(guestbook_name))
@@ -121,19 +93,7 @@ class Guestbook(webapp2.RequestHandler):
         greeting.put()
 
         query_params = {'guestbook_name': guestbook_name}
-        self.redirect('/?' + urllib.urlencode(query_params))
-##        
-        firstName = self.request.get("firstName")
-        familyName = self.request.get("familyName")
-        session = get_current_session()
-        session['firstName'] = firstName
-        session['familyName'] = familyName
-        session['message'] = ''
-        if len(firstName) < 2 or len(familyName) < 2:
-            session['message'] = "First Name and Family Name are mandatory"
-            self.redirect("/")
-        self.response.out.write("First Name: " + firstName 
-           + " Family Name: " + familyName)
+        self.redirect('/?' + urllib.urlencode(query_params))      
 
 application = webapp2.WSGIApplication([
     ('/', MainPage),

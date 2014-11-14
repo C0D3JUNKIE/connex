@@ -8,6 +8,17 @@
   </style>
 {% endblock %}
 {% block content %}
+
+<h3>Streams I own</h3>
+<p>Lorem ipsum type of text for testing.</p>
+<p></p>
+</br>
+<h3>Streams I subscribe to</h3>
+<p>Lorem ipsum type of text for testing.</p>
+<p></p>
+</br>
+</br>
+</br>
 {% for greeting in greetings %}
 {% if greeting.author %}
   <b>{{ greeting.author.nickname() }}</b> wrote:
@@ -17,14 +28,9 @@
   <blockquote>{{ greeting.content }}</blockquote>
   {% endfor %}  
   
-  <h3>Streams I own</h3>
-
-  <h3>Streams I subscribe to</h3>
-
   <a href='/messages'>messages</a>
         
   <p style="color: red">{{message}}</p>
-        
   <form method="post">
     <label for="firstName">First Name:</label>
     <input name="firstName" type="text" value="{{firstName}}"/><br />
