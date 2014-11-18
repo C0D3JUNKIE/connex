@@ -24,3 +24,27 @@ body {
    #nav li a:hover {
       color: #c00;
       background-color: #fff; }
+
+table#t01 {
+    width: 80%; 
+    background-color: #f1f1c1;
+    border-width: 0.5px;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: green;
+}
+
+table > tr {
+    vertical-align: middle;
+}
+
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+    background-color: #fff;
+}
+table#t01 th {
+    color: white;
+    background-color: black;
+}
