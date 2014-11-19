@@ -1,6 +1,7 @@
 body {
   font-family: Verdana, Helvetica, sans-serif;
   background-color: #DDDDDD;
+  padding: 25px;
 }
 
 #nav {
@@ -25,7 +26,7 @@ body {
       color: #c00;
       background-color: #fff; }
 
-table#t01 {
+table {
     width: 80%; 
     background-color: #f1f1c1;
     border-width: 0.5px;
@@ -38,13 +39,13 @@ table > tr {
     vertical-align: middle;
 }
 
-table#t01 tr:nth-child(even) {
+table tr:nth-child(even) {
     background-color: #eee;
 }
-table#t01 tr:nth-child(odd) {
+table tr:nth-child(odd) {
     background-color: #fff;
 }
-table#t01 th {
+table th {
     color: white;
     background-color: black;
 }
