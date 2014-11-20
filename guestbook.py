@@ -99,4 +99,4 @@ application = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/index', MainPage),
     ('/sign', Guestbook),
-], debug=True)
+    ], debug=True)

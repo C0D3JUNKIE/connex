@@ -8,9 +8,14 @@
   </style>
 {% endblock %}
 {% block content %}
-
+<h3>What are Streams?</h3>
+<p>Streams are 'streams of information' that are relevant to your everyday life.  Streams consist of search and notification algorithms that allow you to find and organize information, events, and causes or organizations you are interested receiving updates upon.</p>
+<p>
+The Stream Management Page allows you to quickly view Streams you own or have subscribed to.   Searching and filtering capabilities are provided for the table displays.</p>
+<p></p>
+<a href="{{ url|safe }}">{{ url_linktext }}</a>
+<p></p>
 <h3>Streams I own</h3>
-<p>Lorem ipsum type of text for testing.</p>
 <table id="t01">
   <tr>
     <th>Thumbnail</th>
@@ -47,6 +52,7 @@
 </br>
 </br>
 </br>
+
 {% for greeting in greetings %}
 {% if greeting.author %}
   <b>{{ greeting.author.nickname() }}</b> wrote:
@@ -55,7 +61,7 @@
   {% endif %}
   <blockquote>{{ greeting.content }}</blockquote>
   {% endfor %}  
-  
+  <h3>Pending Messages</h3>
   <a href='/messages'>messages</a>
         
   <p style="color: red">{{message}}</p>
@@ -72,12 +78,9 @@
     <div><textarea name="content" rows="3" cols="60"></textarea></div>
     <div><input type="submit" value="Sign Guestbook"></div>
   </form>
-
   <hr>
   <form>Guestbook name:
     <input value="{{ guestbook_name }}" name="guestbook_name">
     <input type="submit" value="switch">
   </form>
-
-  <a href="{{ url|safe }}">{{ url_linktext }}</a>
 {% endblock %}
