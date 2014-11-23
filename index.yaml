@@ -15,9 +15,29 @@ indexes:
   properties:
   - name: date
     direction: desc
+  - name: author
+    direction: desc
+  - name: content
+    direction: desc
 
 - kind: Streams
   ancestor: yes
   properties:
-  - name: date
+  - name: stream_name
     direction: desc
+  - name: thumb_img
+    direction: desc
+  - name: owner_name
+    direction: desc
+  - name: subscriber_list
+    direction: desc
+  - name: create_date
+    direction: desc
+  - name: category_id
+    direction: desc
+    - name: category_name
+    direction: desc
+    - name: location_id
+    direction: desc
+    - name: location_name
+    direction: desc  
