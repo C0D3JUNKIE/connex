@@ -3,6 +3,7 @@ import urllib
 import cgi
 import jinja2
 import webapp2
+from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -20,7 +21,7 @@ def streaminfo_key(streaminfo_name=STREAMINFO):
     return ndb.Key('Stream Name', streaminfo_name)
 
 class Streams(ndb.Model):
-    """Models an individual Guestbook entry."""
+    """Models an individual Stream entry."""
     stream_name = ndb.StringProperty(indexed=False)
     thumb_img = ndb.BlobProperty()
     owner_name = ndb.UserProperty()
