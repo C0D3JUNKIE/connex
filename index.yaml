@@ -15,6 +15,12 @@ indexes:
   properties:
   - name: date
     direction: desc
+
+- kind: Greeting
+  ancestor: yes
+  properties:
+  - name: date
+    direction: desc
   - name: author
     direction: desc
   - name: content
@@ -35,9 +41,9 @@ indexes:
     direction: desc
   - name: category_id
     direction: desc
-    - name: category_name
+  - name: category_name
     direction: desc
-    - name: location_id
+  - name: location_id
     direction: desc
-    - name: location_name
-    direction: desc  
+  - name: location_name
+    direction: desc
