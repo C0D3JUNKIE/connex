@@ -37,6 +37,7 @@ class Streams(ndb.Model):
 class CreatePage(webapp2.RequestHandler):
 
     def get(self):
+        
         stream_name = self.request.get('stream_name', STREAMINFO)
         thumb_img = self.request.get('thunmb_img', STREAMINFO)
         stream_id = self.request.get('stream_id', STREAMINFO)
@@ -47,7 +48,10 @@ class CreatePage(webapp2.RequestHandler):
         category_name = self.request.get('category_name', STREAMINFO)
         location_id = self.request.get('location_id', STREAMINFO)
         location_name = self.request.get('location_name', STREAMINFO)
-        
+
+        streams_query = Streams.query(ancestor = streaminfo_key(stream_name)).order(-Streams.create_date)
+        streams = streams_query.fetch(10)
+
         template = JINJA_ENVIRONMENT.get_template('create.html')
         self.response.write(template.render())
 
