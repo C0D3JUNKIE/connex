@@ -40,7 +40,7 @@ def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
 
 class Greeting(ndb.Model):
     """Models an individual Guestbook entry."""
-    author = ndb.UserProperty()
+    author = ndb.UserProperty(required=True, indexed=True)
     content = ndb.StringProperty(indexed=False)
     date = ndb.DateTimeProperty(auto_now_add=True)
 

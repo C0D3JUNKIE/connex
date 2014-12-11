@@ -24,7 +24,7 @@ class Streams(ndb.Model):
     """Models an individual Stream entry."""
     stream_name = ndb.StringProperty(indexed=False)
     thumb_img = ndb.BlobProperty()
-    owner_name = ndb.UserProperty()
+    owner_name = ndb.UserProperty(required=True, indexed=False)
     stream_id = ndb.StringProperty(required=True, indexed=True)
     owner_name = ndb.StringProperty(indexed=False)
     subscriber_list = ndb.StringProperty(indexed=False)
